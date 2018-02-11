@@ -12,7 +12,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom lubridate ymd
 #' @importFrom magrittr "%>%"
-#' @importFrom purrr keep map pluck walk
+#' @importFrom purrr keep map map_chr pluck walk
 #' @importFrom stringr str_c str_detect
 #' @importFrom tibble tibble
 NULL

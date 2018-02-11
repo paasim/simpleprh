@@ -1,7 +1,7 @@
 Package: simpleprh
 Type: Package
 Title: An R package for accessing the PRH open data API
-Version: 0.1.0
+Version: 0.2.0
 Author: Who wrote it
 Maintainer: Markus Paasiniemi <paasim@iki.fi>
 Description: An R package for accessing the PRH open data API. Currently the
