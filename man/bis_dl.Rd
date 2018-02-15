@@ -4,26 +4,31 @@
 \alias{bis_dl}
 \title{Download data from the PRH open data API}
 \usage{
-bis_dl(id, lang = "FI")
+bis_dl(id, excl_langs = character(0), return_type = "tbl")
 }
 \arguments{
 \item{id}{The business ID of the company. Must be of the format 1111111-1,
 ie. seven digits followed by a dash and a checksum digit.}
 
-\item{lang}{The language of the results. Defaults to \code{"FI"} and must be either
-\code{"FI"}, \code{"SE"} or \code{"EN"}.}
+\item{excl_langs}{A character vector of the languages to be excluded from
+the results. By default, some of the fields return the same information in
+Finnish, Swedish and English. The value can therefore be for example
+\code{c("SE", "EN")} to only return the results in Finnish or \code{"FI"}
+to only return the results in English. Defaults to \code{character(0)}, ie.
+the results are returned in all available languages.}
+
+\item{return_type}{The return type. Either \code{"tbl"} for returning a one
+row tibble with columns as the fields, or \code{"list"} for returning a
+a list. A list is probably simpler for accessing a single result while a
+tibble might be more convenient when combining multiple results. Defaults
+to \code{"tbl"}.}
 }
 \value{
-A tibble with one row and the columns \code{name},
- \code{business_id}, \code{company_form}, \code{registration_date},
- \code{business_line}, \code{business_line_code}, \code{liquidation_descr},
- \code{liquidation_registration} and \code{liquidation_end}.
- If the result contains multiple records of business line and/or liquidation,
- the newest (by registration date) is returned.
- \code{liquidation_descr} specifies the type of liquidation, if any has been
- active. If, in addition, \code{liquidation_end} is not \code{NA}, the
- liquidation has ended.
- For information about the business line classification, see
+A tibble with one row where each column is a field returned by the
+ API or a list with the elemnents corresponding to the fields. All
+ \code{NULL}s are converted to \code{NA}s. For more information about the
+ API, see \url{http://avoindata.prh.fi/ytj_en.html}. For information about
+ the business line classification, see
  \url{http://www.stat.fi/meta/luokitukset/toimiala/001-2008/index_en.html}.
 }
 \description{
@@ -35,7 +40,7 @@ with the \code{lang}-parameter.
 \donttest{
 library(simpleprh)
 # Download information related to Nokia Oyj
-bis_dl("0112038-9", lang = "EN")
+bis_dl("0112038-9")
 }
 
 }
