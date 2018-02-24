@@ -61,5 +61,5 @@ test_that("input validates works correctly", {
 })
 
 test_that("bis_dl handles zero results correctly.", {
-  expect_error(bis_dl("1111111-1"), regexp = "Query returned with an error")
+  expect_error(bis_dl("1111111-1"), regexp = "totalResults\":-1")
 })

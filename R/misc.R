@@ -27,7 +27,5 @@ check_input <- function(id, excl_lang, return_type) {
 }
 
 handle_request_errors <- function(req) {
-  if (http_error(req))
-    str_c("\nQuery returned with an error, see the result below:\n",
-          rawToChar(req$content)) %>% stop()
+  if (http_error(req)) content(req, "text", "application/json", "UTF-8") %>% stop()
 }
