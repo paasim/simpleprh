@@ -50,7 +50,7 @@ bis_dl <- function(id, excl_langs = character(0), return_type = "tbl") {
 
   # remove an unnecessary field
   res_lst$details_uri <- NULL
-  res_lst$registration_date <- ymd(res_lst$registration_date)
+  res_lst$registration_date <- ymd(res_lst$registration_date %||% NA_character_)
 
   res <- modify_if(res_lst, is.list, ~list_elem_to_tibble(.x, excl_langs))
   # list_elem_to_tibble inside a list to make it suitable for a list-column
