@@ -36,10 +36,10 @@
 #'
 bis_dl <- function(id, excl_langs = character(0), return_type = "tbl") {
   # check that the input variables are valid
-  check_input(id, excl_langs, return_type)
+  bis_dl_check_input(id, excl_langs, return_type)
 
   # request information related to the given business id.
-  req <- str_c("https://avoindata.prh.fi/bis/v1/", id) %>% GET()
+  req <- GET("https://avoindata.prh.fi/", path = str_c("bis/v1/", id))
   handle_request_errors(req)
 
   # transfrom the results into a list
@@ -52,7 +52,8 @@ bis_dl <- function(id, excl_langs = character(0), return_type = "tbl") {
   res_lst$details_uri <- NULL
   res_lst$registration_date <- ymd(res_lst$registration_date %||% NA_character_)
 
-  res <- modify_if(res_lst, is.list, ~list_elem_to_tibble(.x, excl_langs))
+  res <- modify_if(res_lst, is.list,
+                   ~list_elem_to_tibble(.x) %>% lang_filter(excl_langs))
   # list_elem_to_tibble inside a list to make it suitable for a list-column
   if (return_type == "tbl") as_tibble(modify_if(res, is.tbl, list)) else res
 }

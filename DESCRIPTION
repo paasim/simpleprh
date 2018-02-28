@@ -1,12 +1,12 @@
 Package: simpleprh
 Type: Package
 Title: An R package for accessing the PRH open data API
-Version: 0.3.2
+Version: 0.4.0
 Author: Who wrote it
 Maintainer: Markus Paasiniemi <paasim@iki.fi>
-Description: An R package for accessing the PRH open data API. Currently only
-    a simple function to download information related to a single business id
-    exists although more functionality might be added in the future.
+Description: An R package for accessing the PRH open data API. Contains two
+    functions; one for downloading information related to a single business id
+    and another for querying information with company name.
 License: MIT + file LICENSE
 Depends: R (>= 3.1.2)
 Imports:
