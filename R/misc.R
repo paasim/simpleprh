@@ -41,3 +41,8 @@ bis_lookup_check_input <- function(name, max_results, results_from) {
 handle_request_errors <- function(req) {
   if (http_error(req)) content(req, "text", "application/json", "UTF-8") %>% stop()
 }
+
+.onAttach <- function(...) {
+  ver <- utils::packageVersion("simpleprh")
+  packageStartupMessage("This is simpleprh version ", ver)
+}
