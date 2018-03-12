@@ -1,6 +1,6 @@
 list_elem_to_tibble <- function(e) {
   # this is to transform NULLs to NAs
-  res <- map(e, ~map_if(.x, ~length(.x) == 0L, ~NA_character_)) %>%
+  map(e, ~map_if(.x, ~length(.x) == 0L, ~NA_character_)) %>%
     transpose() %>%
     map(as_vector) %>%
     as_tibble() %>%
@@ -17,7 +17,7 @@ snake_case <- function(x) gsub("([a-z])([A-Z])", "\\1_\\2", x) %>% tolower()
 names_to_snake_case <- function(x) set_names(x, snake_case(names(x)))
 
 bis_dl_check_input <- function(id, excl_lang, return_type) {
-  if (!is_scalar_character(id) || !str_detect(id, "^\\d{7}-\\d$"))
+  if (!is_scalar_character(id) || !str_detect(id, "^\\d{7}-\\d$") || is.na(id))
     stop("'id' must be a character vector of length one with the format '1234567-8'.")
 
   if (!is_character(excl_lang)) stop("'excl_lang' must be a character vector.")
@@ -26,7 +26,7 @@ bis_dl_check_input <- function(id, excl_lang, return_type) {
 }
 
 bis_lookup_check_input <- function(name, max_results, results_from) {
-  if (!is_scalar_character(name))
+  if (!is_scalar_character(name) || is.na(name))
     stop("'name' must be a character vector of length one.")
 
   if ((!is_scalar_double(max_results) & !is_scalar_integer(max_results)) ||
