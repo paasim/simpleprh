@@ -23,7 +23,7 @@ jobs:
           install.packages(c('remotes', 'rcmdcheck', 'covr'))
         shell: Rscript {0}
       - name: Install system dependencies
-        run |
+        run: |
           while read -r cmd
           do
             eval sudo $cmd
