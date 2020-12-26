@@ -1,7 +1,7 @@
 # simpleprh
 
-[![Build Status](https://travis-ci.org/paasim/simpleprh.svg?branch=master)](https://travis-ci.org/paasim/simpleprh)
-[![codecov](https://codecov.io/gh/paasim/simpleprh/branch/master/graphs/badge.svg)](https://codecov.io/gh/paasim/simpleprh)
+[![R build status](https://github.com/paasim/simpleprh/workflows/R-CMD-check/badge.svg)](https://github.com/paasim/simpleprh/actions)
+[![codecov](https://codecov.io/gh/paasim/simpleprh/branch/main/graph/badge.svg?token=xN0YBogLvO)](https://codecov.io/gh/paasim/simpleprh)
 
 An R package for downloading data from the [PRH open data API](https://avoindata.prh.fi/index_en.html) in a tidy format for personal use.
 Currently contains two functions `bis_dl`, and `bis_lookup`. The first can be used for downloading information related to a single business id and the latter for querying a business ID and official company name given a name as a search parameter. 
